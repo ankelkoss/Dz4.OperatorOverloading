@@ -1,5 +1,6 @@
 ﻿using OperatorOverloading.Task1;
 using OperatorOverloading.Task2;
+using OperatorOverloading.Task3;
 using System.Text;
 
 namespace OperatorOverloading
@@ -12,7 +13,8 @@ namespace OperatorOverloading
             Console.InputEncoding = new UTF8Encoding(false);
 
             //Task1();
-            Task2();
+            //Task2();
+            Task3();
 
             Console.ReadLine();
         }
@@ -82,6 +84,42 @@ namespace OperatorOverloading
 
                 // error
                 var bad = lviv - 1_000_000;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\r\nОшибка: {ex.Message}");
+            }
+        }
+
+        static void Task3()
+        {
+            try
+            {
+                var ivan = new CreditCard("Иван Петров", 4441114454322345L, "023", 1250.50m);
+                var olena = new CreditCard("Олена Іваненко", 4441111134569876L, "023", 980.00m);
+
+                Console.WriteLine("Баланс до изменений");
+                Console.WriteLine(ivan);
+                Console.WriteLine(olena);
+
+                var ivanPlus = ivan + 300.00m;  
+                var olenaMinus = olena - 150.00m; 
+                olenaMinus.ChangeCVC("777"); // ----------------- ChangeCVC
+
+                Console.WriteLine("\r\nБаланс после изменений");
+                Console.WriteLine(ivanPlus);
+                Console.WriteLine(olenaMinus);
+
+                Console.WriteLine($"\r\nДо изменений: баланс карты Ивана ({ivan.Balance}) больше, чем у Олены ({olena.Balance}) — {(ivan > olena)}");
+                Console.WriteLine($"До изменений: баланс карты Ивана ({ivan.Balance}) меньше, чем у Олены ({olena.Balance}) — {(ivan < olena)}");
+                Console.WriteLine($"До изменений: CVC Ивана и Олены равны — {(ivan == olena)}");
+
+                Console.WriteLine($"\r\nПосле изменений: баланс Ивана ({ivanPlus.Balance}) больше, чем у Олены после списания ({olenaMinus.Balance}) — {(ivanPlus > olenaMinus)}");
+                Console.WriteLine($"После изменений: баланс Ивана ({ivanPlus.Balance}) меньше, чем у Олены после списания ({olenaMinus.Balance}) — {(ivanPlus < olenaMinus)}");
+                Console.WriteLine($"После изменений: CVC Ивана и Олены равны — {(ivanPlus == olenaMinus)}");
+
+                // ошибка (списание больше доступного)
+                var bad = olena - 10_000m;
             }
             catch (Exception ex)
             {
