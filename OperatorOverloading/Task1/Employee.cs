@@ -86,6 +86,23 @@ namespace OperatorOverloading.Task1
             return a.Salary > b.Salary;
         }
 
+        public override bool Equals(object? obj)
+        {
+            if(obj is Employee employee)
+            {
+                return employee.Salary == this.Salary;
+            }
+            else
+            {
+                return base.Equals(obj);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Salary.GetHashCode();
+        }
+
         public override string ToString() => $"{LastName} {FirstName}: {Salary} грн";
     }
 }
