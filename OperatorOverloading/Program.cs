@@ -1,4 +1,5 @@
 ﻿using OperatorOverloading.Task1;
+using OperatorOverloading.Task2;
 using System.Text;
 
 namespace OperatorOverloading
@@ -10,7 +11,8 @@ namespace OperatorOverloading
             Console.OutputEncoding = new UTF8Encoding(false);
             Console.InputEncoding = new UTF8Encoding(false);
 
-            Task1();
+            //Task1();
+            Task2();
 
             Console.ReadLine();
         }
@@ -50,6 +52,41 @@ namespace OperatorOverloading
                 Console.WriteLine($"\r\nОшибка: {ex.Message}");
             }
 
+        }
+
+        static void Task2()
+        {
+            try
+            {
+                var kyiv = new City("Киев", 2_967_000, "Украина");
+                var lviv = new City("Львов", 717_000, "Украина");
+
+                Console.WriteLine("Население до изменений");
+                Console.WriteLine(kyiv);  
+                Console.WriteLine(lviv); 
+
+                var kyivPlus = kyiv + 10_000; 
+                var lvivMinus = lviv - 17_000; 
+
+                Console.WriteLine("\r\nНаселение после изменений");
+                Console.WriteLine(kyivPlus);  
+                Console.WriteLine(lvivMinus); 
+
+                Console.WriteLine($"\r\nДо изменений: население Киева ({kyiv.Population}) больше, чем у Львова ({lviv.Population}) — {(kyiv > lviv)}");
+                Console.WriteLine($"До изменений: население Киева ({kyiv.Population}) меньше, чем у Львова ({lviv.Population}) — {(kyiv < lviv)}");
+                Console.WriteLine($"До изменений: население Киева ({kyiv.Population}) и Львова ({lviv.Population}) равны — {(kyiv == lviv)}");
+
+                Console.WriteLine($"\r\nПосле изменений: население Киева ({kyivPlus.Population}) больше, чем у Львова после уменьшения ({lvivMinus.Population}) — {(kyivPlus > lvivMinus)}");
+                Console.WriteLine($"После изменений: население Киева ({kyivPlus.Population}) меньше, чем у Львова после уменьшения ({lvivMinus.Population}) — {(kyivPlus < lvivMinus)}");
+                Console.WriteLine($"После изменений: население Киева ({kyivPlus.Population}) равно населению Львова после уменьшения ({lvivMinus.Population}) — {(kyivPlus == lvivMinus)}");
+
+                // error
+                var bad = lviv - 1_000_000;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\r\nОшибка: {ex.Message}");
+            }
         }
     }
 }
