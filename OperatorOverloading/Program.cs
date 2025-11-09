@@ -12,13 +12,59 @@ namespace OperatorOverloading
             Console.OutputEncoding = new UTF8Encoding(false);
             Console.InputEncoding = new UTF8Encoding(false);
 
-            //Task1();
-            //Task2();
-            Task3();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Нажмите соответствующую опирации цифру на клавиатуре\r\n");
+                    Console.WriteLine("=================================");
+                    Console.WriteLine($"К какой задаче приступить? Нажмите соответствующую цифру на клавиатуре\r\n");
+                    Console.WriteLine("1. клас «Співробітник»");
+                    Console.WriteLine("2. клас «Місто»");
+                    Console.WriteLine("3. клас «Кредитна картка»");
+                    Console.WriteLine("4. Завершить программу");
+                    Console.WriteLine("Выберите опцию: \r\n");
 
-            Console.ReadLine();
+                    switch (Console.ReadKey(true).KeyChar.ToString())
+                    {
+                        case "1":
+                            Console.Clear();
+                            Task1();
+                            break;
+
+                        case "2":
+                            Console.Clear();
+                            Task2();
+                            break;
+
+                        case "3":
+                            Console.Clear();
+                            Task3();
+                            break;
+
+                        case "4":
+                            Console.Clear();
+                            Console.WriteLine("До свидания!");
+                            Environment.Exit(0);
+                            break;
+
+                        default:
+                            Console.WriteLine("Неправильный выбор!");
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex}");
+                }
+                finally
+                {
+                    Console.WriteLine("\r\n\r\nУспешная операция! Нажмите любую клавишу для продолжения...");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
         }
-
 
         static void Task1()
         {
